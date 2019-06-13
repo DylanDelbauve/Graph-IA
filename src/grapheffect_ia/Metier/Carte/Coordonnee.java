@@ -83,6 +83,13 @@ public class Coordonnee {
         return c;
     }
 
+    public static Coordonnee fromString(String message) {
+        String[] temp = message.split(",",2);
+        int ligne = Integer.valueOf(temp[0]);
+        int colonne = Integer.valueOf(temp[1]);
+        return new Coordonnee(ligne,colonne);
+    }
+
     @Override
     public String toString() {
         return "("+ligne+","+colonne+")";
