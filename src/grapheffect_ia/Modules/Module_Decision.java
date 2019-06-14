@@ -35,22 +35,30 @@ public class Module_Decision extends Module {
                 if(vaisseau.getPA() != 0) {
                     reponse = "MOUVEMENT|"+vaisseau.getNom()+"|"+vaisseau.getOrdre().name();
                     vaisseau.faireOrdre();
+                    moduleMemoire.setCarteAJour(!vaisseau.besoinMiseAJourCarte());
                 }
                 else {
                     reponse = "FINTOUR";
+                    for (Vaisseau v: this.getIA().getModuleMemoire().getVaisseaux()) {
+                        v.resetPA();
+                    }
                 }
             }
-            else if(!vaisseau.getPosition().equals(new Coordonnee(0,20))) {
+            else if(!vaisseau.getPosition().equals(new Coordonnee(0,0))) {
                 ParcoursLargeur parcours = new ParcoursLargeur(moduleMemoire.getCarte());
                 parcours.calculer(moduleMemoire.getCarte().getCase(vaisseau.getPosition()));
-                vaisseau.ajouterOrdres(parcours.getChemin(moduleMemoire.getCarte().getCase(new Coordonnee(0,20))));
+                vaisseau.ajouterOrdres(parcours.getChemin(moduleMemoire.getCarte().getCase(new Coordonnee(0,0))));
 
                 if(vaisseau.getPA() != 0) {
                     reponse = "MOUVEMENT|"+vaisseau.getNom()+"|"+vaisseau.getOrdre().name();
                     vaisseau.faireOrdre();
+                    moduleMemoire.setCarteAJour(!vaisseau.besoinMiseAJourCarte());
                 }
                 else {
                     reponse = "FINTOUR";
+                    for (Vaisseau v: this.getIA().getModuleMemoire().getVaisseaux()) {
+                        v.resetPA();
+                    }
                 }
             }
             else {

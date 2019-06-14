@@ -19,15 +19,19 @@ public class Module_Memoire extends Module  {
 
     public Module_Memoire(IA ia) {
         super(ia);
+        carteAJour = false;
     }
 
     public void genererCarte(String messageRecu) {
         carte = new Carte(messageRecu);
         carteAJour = true;
+        for (Vaisseau v: vaisseaux) {
+            v.setCarte(carte);
+        }
     }
 
     public boolean hasCarte() {
-        return this.carte!=null;
+        return carteAJour;
     }
 
     public void setBase(String message) {
@@ -43,14 +47,19 @@ public class Module_Memoire extends Module  {
     }
 
     public void ajouterVaisseau() {
-        vaisseaux.add(new Vaisseau(coordonnee_Base));
+        vaisseaux.add(new Vaisseau(coordonnee_Base, carte));
     }
 
-    public boolean getCarte() {
-        return carteAJour;
+    public Carte getCarte() {
+        return carte;
     }
 
     public void setCarteAJour(boolean carteAJour) {
         this.carteAJour = carteAJour;
+        if(!this.carteAJour) {
+            for (Vaisseau v : vaisseaux) {
+                v.viderOrdres();
+            }
+        }
     }
 }

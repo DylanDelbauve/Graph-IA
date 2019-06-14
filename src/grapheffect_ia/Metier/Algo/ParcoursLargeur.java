@@ -70,6 +70,8 @@ public class ParcoursLargeur {
             caseEnCours = casePrecedent;
         }
         Collections.reverse(resultat);
+        if (distances.get(arrivee) == null || distances.get(arrivee) == -1)
+            resultat.clear();
         return resultat;
     }
 
