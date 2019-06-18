@@ -75,5 +75,10 @@ public class ParcoursLargeur {
         return resultat;
     }
 
-
+    public boolean estAtteignable(Case c) {
+        boolean res = false;
+        if (getDistance(c) != -1)
+            res = true;
+        return res;
+    }
 }

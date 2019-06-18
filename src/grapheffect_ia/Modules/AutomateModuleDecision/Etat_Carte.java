@@ -14,6 +14,6 @@ public class Etat_Carte extends Etat {
 
     @Override
     public Etat transition() {
-        return new Etat_BesoinVaisseau(super.getModule());
+        return (this.getModuleMemoire().hasBase() ? new Etat_BesoinVaisseau(this.getModule()) : new Etat_Base(this.getModule()));
     }
 }

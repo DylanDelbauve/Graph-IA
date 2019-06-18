@@ -15,10 +15,10 @@ public class Etat_BesoinVaisseau extends Etat {
     @Override
     public Etat transition() {
         Etat res = null;
-        if (super.getModuleMemoire().getVaisseaux().isEmpty())
-            res = new Etat_Fabrication(super.getModule());
+        if (this.getModuleMemoire().getVaisseaux().isEmpty())
+            res = new Etat_Fabrication(this.getModule());
         else
-            res = new Etat_GestionVaisseau(super.getModule());
+            res = new Etat_GestionVaisseau(this.getModule());
         return res;
     }
 }

@@ -2,6 +2,7 @@ package grapheffect_ia.Modules;
 
 import grapheffect_ia.IA;
 import grapheffect_ia.Metier.Carte.Carte;
+import grapheffect_ia.Metier.Carte.Cases.Case;
 import grapheffect_ia.Metier.Carte.Coordonnee;
 import grapheffect_ia.Metier.Vaisseaux.Vaisseau;
 
@@ -61,5 +62,9 @@ public class Module_Memoire extends Module  {
                 v.viderOrdres();
             }
         }
+    }
+
+    public Case getCaseBase() {
+        return carte.getCase(this.coordonnee_Base);
     }
 }

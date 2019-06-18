@@ -9,6 +9,10 @@ public class FabriqueCase {
         switch (lettre) {
             case 'A' : c = new Case_Asteroides(coordonnee);
                     break;
+            case 'D' : c = new Case_Asteroides(coordonnee);
+                break;
+            case 'T' : c = new Case_Asteroides(coordonnee);
+                break;
             case 'E' : c = new Case_Espace(coordonnee);
                     break;
             case 'S' : c = new Case_Etoile(coordonnee);

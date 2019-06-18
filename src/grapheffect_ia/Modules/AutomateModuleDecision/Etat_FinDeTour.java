@@ -14,6 +14,7 @@ public class Etat_FinDeTour extends Etat {
 
     @Override
     public Etat transition() {
-        return new Etat_GestionVaisseau(super.getModule());
+        this.getModuleMemoire().getVaisseaux().get(0).resetPA();
+        return new Etat_GestionVaisseau(this.getModule());
     }
 }

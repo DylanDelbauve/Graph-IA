@@ -14,6 +14,6 @@ public class Etat_Base extends Etat {
 
     @Override
     public Etat transition() {
-        return new Etat_BesoinVaisseau(super.getModule());
+        return new Etat_BesoinVaisseau(this.getModule());
     }
 }

@@ -15,12 +15,12 @@ public class Etat_GestionVaisseau extends Etat {
     @Override
     public Etat transition() {
         Etat res = null;
-        if (super.getModuleMemoire().getVaisseaux().get(0).getPA() == 0)
-            res = new Etat_FinDeTour(super.getModule());
-        else if (super.getModuleMemoire().getVaisseaux().get(0).getOrdre() != null)
-            res = new Etat_Mouvement(super.getModule());
+        if (this.getModuleMemoire().getVaisseaux().get(0).getPA() == 0)
+            res = new Etat_FinDeTour(this.getModule());
+        else if (this.getModuleMemoire().getVaisseaux().get(0).getOrdre() != null)
+            res = new Etat_Mouvement(this.getModule());
         else
-            res = new Etat_ChoixDestination(super.getModule());
+            res = new Etat_ChoixDestination(this.getModule());
         return res;
     }
 }

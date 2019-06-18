@@ -14,7 +14,7 @@ public class Etat_Fabrication extends Etat {
 
     @Override
     public Etat transition() {
-        super.getModuleMemoire().ajouterVaisseau();
-        return new Etat_GestionVaisseau(super.getModule());
+        this.getModuleMemoire().ajouterVaisseau();
+        return new Etat_GestionVaisseau(this.getModule());
     }
 }

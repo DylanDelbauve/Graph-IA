@@ -3,6 +3,7 @@ package grapheffect_ia.Metier.Carte;
 import grapheffect_ia.Metier.Carte.Cases.Case;
 import grapheffect_ia.Metier.Carte.Cases.FabriqueCase;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Carte {
@@ -53,5 +54,9 @@ public class Carte {
 
     public Case getCase(Coordonnee coordonnee) {
         return cases.get(coordonnee);
+    }
+
+    public Collection<Case> getCases() {
+        return cases.values();
     }
 }

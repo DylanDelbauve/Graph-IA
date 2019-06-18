@@ -14,6 +14,6 @@ public class Etat_Initial extends Etat {
 
     @Override
     public Etat transition() {
-        return new Etat_Carte(super.getModule());
+        return new Etat_Carte(this.getModule());
     }
 }
