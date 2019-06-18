@@ -6,6 +6,7 @@ import grapheffect_ia.Metier.Carte.Cases.Case_Inconnue;
 import grapheffect_ia.Metier.Carte.Cases.TypeCase;
 import grapheffect_ia.Metier.Carte.Coordonnee;
 import grapheffect_ia.Metier.Carte.TypeMouvement;
+import grapheffect_ia.Modules.Module_Memoire;
 
 import java.util.ArrayList;
 
@@ -15,17 +16,28 @@ public class Vaisseau {
     private int PA;
     private String nom;
     private Carte carte;
+    private Coordonnee destination;
+    private Module_Memoire moduleMemoire;
+
+    public Coordonnee getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Coordonnee destination) {
+        this.destination = destination;
+    }
 
     public void setCarte(Carte carte) {
         this.carte = carte;
     }
 
-    public Vaisseau(Coordonnee position, Carte carte) {
+    public Vaisseau(Coordonnee position, Carte carte, int numero, Module_Memoire moduleMemoire) {
         this.position = position;
         this.ordres = new ArrayList<>();
-        this.nom = "Explorateur_1";
+        this.nom = "Explorateur_"+numero;
         this.carte = carte;
         this.PA = 6;
+        this.moduleMemoire = moduleMemoire;
     }
 
     public Coordonnee getPosition() {
@@ -53,8 +65,10 @@ public class Vaisseau {
     }
 
     public void faireOrdre() {
-        position = position.voisin(getOrdre());
-        ordres.remove(0);
+        if (this.peutFaireOrdre()) {
+            position = position.voisin(getOrdre());
+            ordres.remove(0);
+        }
         PA--;
     }
 
@@ -71,5 +85,12 @@ public class Vaisseau {
 
     public void viderOrdres() {
         this.ordres.clear();
+    }
+
+    public boolean peutFaireOrdre() {
+        boolean res = false;
+        if (!ordres.isEmpty() && moduleMemoire.positionLibre(destination))
+            res = true;
+        return res;
     }
 }

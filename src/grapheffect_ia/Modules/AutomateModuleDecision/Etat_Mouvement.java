@@ -1,17 +1,21 @@
 package grapheffect_ia.Modules.AutomateModuleDecision;
 
+import grapheffect_ia.Metier.Vaisseaux.Vaisseau;
 import grapheffect_ia.Modules.Module_Decision;
 
 public class Etat_Mouvement extends Etat {
-    public Etat_Mouvement(Module_Decision module_decision) {
+    private Vaisseau vaisseau;
+
+    public Etat_Mouvement(Module_Decision module_decision, Vaisseau vaisseau) {
         super(module_decision);
+        this.vaisseau = vaisseau;
     }
 
     @Override
     public String messageAEnvoyer() {
         String s = "MOUVEMENT|";
-        if (this.getModuleMemoire().getVaisseaux().get(0).getOrdre() != null)
-            s+= this.getModuleMemoire().getVaisseaux().get(0).getNom()+"|"+this.getModuleMemoire().getVaisseaux().get(0).getOrdre();
+        if (vaisseau.getOrdre() != null && vaisseau.peutFaireOrdre())
+            s+= vaisseau.getNom()+"|"+vaisseau.getOrdre();
         else
             s = "";
         return s;
@@ -19,10 +23,10 @@ public class Etat_Mouvement extends Etat {
 
     @Override
     public Etat transition() {
-        if (this.getModuleMemoire().getVaisseaux().get(0).getOrdre() != null)
-            this.getModuleMemoire().getVaisseaux().get(0).faireOrdre();
-        this.getModuleMemoire().setCarteAJour(! this.getModuleMemoire().getVaisseaux().get(0).besoinMiseAJourCarte());
-        Etat res = (this.getModuleMemoire().hasCarte()) ? new Etat_GestionVaisseau(this.getModule()) : new Etat_Carte(this.getModule());
+        if (vaisseau.getOrdre() != null)
+            vaisseau.faireOrdre();
+        this.getModuleMemoire().setCarteAJour(! vaisseau.besoinMiseAJourCarte());
+        Etat res = (this.getModuleMemoire().hasCarte()) ? new Etat_BesoinVaisseau(this.getModule()) : new Etat_Carte(this.getModule());
         return res;
     }
 }

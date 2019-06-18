@@ -33,7 +33,12 @@ public class ParcoursExploration {
         for (Case c : carte.getCases()) {
             if (parcoursDepuisBase.estAtteignable(c) && parcoursDepuisVaisseau.estAtteignable(c) && c.getType() == TypeCase.INCONNUE) {
                 int coutDistance = parcoursDepuisBase.getDistance(c) + parcoursDepuisVaisseau.getDistance(c);
-                int cout = coutDistance;
+                int coutVoisin = 0;
+                for (Case v: c.getVoisins()) {
+                    if (v.getType() != TypeCase.INCONNUE)
+                        coutVoisin++;
+                }
+                int cout = coutDistance+coutVoisin;
                 if (cout < coutMin) {
                     resultat = c;
                     coutMin = cout;
@@ -41,5 +46,9 @@ public class ParcoursExploration {
             }
         }
         return resultat;
+    }
+
+    public boolean estAtteignable(Case c) {
+        return parcoursDepuisVaisseau.estAtteignable(c);
     }
 }

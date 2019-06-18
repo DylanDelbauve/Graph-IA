@@ -1,5 +1,6 @@
 package grapheffect_ia.Modules.AutomateModuleDecision;
 
+import grapheffect_ia.Metier.Vaisseaux.Vaisseau;
 import grapheffect_ia.Modules.Module_Decision;
 
 public class Etat_FinDeTour extends Etat {
@@ -14,7 +15,9 @@ public class Etat_FinDeTour extends Etat {
 
     @Override
     public Etat transition() {
-        this.getModuleMemoire().getVaisseaux().get(0).resetPA();
-        return new Etat_GestionVaisseau(this.getModule());
+        for (Vaisseau v: this.getModuleMemoire().getVaisseaux()) {
+            v.resetPA();
+        }
+        return new Etat_GestionDesVaisseaux(this.getModule());
     }
 }

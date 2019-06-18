@@ -17,6 +17,7 @@ public class Module_Memoire extends Module  {
     private Coordonnee coordonnee_Base;
     private ArrayList<Vaisseau> vaisseaux = new ArrayList<>();
     private boolean carteAJour;
+    private int numVaisseauEnCours = 0;
 
     public Module_Memoire(IA ia) {
         super(ia);
@@ -48,7 +49,7 @@ public class Module_Memoire extends Module  {
     }
 
     public void ajouterVaisseau() {
-        vaisseaux.add(new Vaisseau(coordonnee_Base, carte));
+        vaisseaux.add(new Vaisseau(coordonnee_Base, carte,vaisseaux.size()+1,this));
     }
 
     public Carte getCarte() {
@@ -66,5 +67,25 @@ public class Module_Memoire extends Module  {
 
     public Case getCaseBase() {
         return carte.getCase(this.coordonnee_Base);
+    }
+
+    public Vaisseau getVaisseauEnCours() {
+        return vaisseaux.get(numVaisseauEnCours);
+    }
+
+    public void vaisseauSuivant() {
+        numVaisseauEnCours++;
+        numVaisseauEnCours = numVaisseauEnCours % vaisseaux.size();
+    }
+
+    public boolean positionLibre(Coordonnee c) {
+        boolean res = true;
+        for (int i = 0; i < vaisseaux.size(); i++) {
+            if (vaisseaux.get(i).getPosition() == c) {
+                res = false;
+                i = vaisseaux.size();
+            }
+        }
+        return res;
     }
 }
