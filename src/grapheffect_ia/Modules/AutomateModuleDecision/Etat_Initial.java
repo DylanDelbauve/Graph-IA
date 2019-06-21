@@ -2,6 +2,10 @@ package grapheffect_ia.Modules.AutomateModuleDecision;
 
 import grapheffect_ia.Modules.Module_Decision;
 
+/**
+ * Etat de départ
+ * @author delbauve
+ */
 public class Etat_Initial extends Etat {
     public Etat_Initial(Module_Decision module_decision) {
         super(module_decision);

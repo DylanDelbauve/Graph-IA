@@ -2,6 +2,10 @@ package grapheffect_ia.Modules.AutomateModuleDecision;
 
 import grapheffect_ia.Modules.Module_Decision;
 
+/**
+ * Etat où l'IA a besoin de vaisseau
+ * @author delbauve
+ */
 public class Etat_BesoinVaisseau extends Etat {
     public Etat_BesoinVaisseau(Module_Decision module_decision) {
         super(module_decision);

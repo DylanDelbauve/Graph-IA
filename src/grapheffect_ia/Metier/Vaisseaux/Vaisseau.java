@@ -10,14 +10,17 @@ import grapheffect_ia.Modules.Module_Memoire;
 
 import java.util.ArrayList;
 
+/**
+ * @author delbauve
+ */
 public class Vaisseau {
-    private Coordonnee position;
-    private ArrayList<TypeMouvement> ordres;
-    private int PA;
-    private String nom;
-    private Carte carte;
-    private Coordonnee destination;
-    private Module_Memoire moduleMemoire;
+    private Coordonnee position; //les coordonnées du vaisseau
+    private ArrayList<TypeMouvement> ordres; //liste des ordres
+    private int PA; //les points d'action
+    private String nom; //nom du vaisseau
+    private Carte carte; //carte du jeu
+    private Coordonnee destination; //coordonnées de destination
+    private Module_Memoire moduleMemoire; //module mémoire de l'IA
 
     public Coordonnee getDestination() {
         return destination;
@@ -31,6 +34,13 @@ public class Vaisseau {
         this.carte = carte;
     }
 
+    /**
+     * Créer un vaisseau
+     * @param position la position du vaisseau
+     * @param carte la carte du jeu
+     * @param numero le numéro du vaisseau
+     * @param moduleMemoire le module mémoire de l'IA
+     */
     public Vaisseau(Coordonnee position, Carte carte, int numero, Module_Memoire moduleMemoire) {
         this.position = position;
         this.ordres = new ArrayList<>();
@@ -52,6 +62,9 @@ public class Vaisseau {
         return nom;
     }
 
+    /**
+     * remet les PA à la valeur de base, 6
+     */
     public void resetPA() {
         this.PA = 6;
     }
@@ -60,10 +73,17 @@ public class Vaisseau {
         return (!this.ordres.isEmpty()) ? this.ordres.get(0) : null;
     }
 
+    /**
+     * Ajoute une liste d'ordres aux ordres du vaisseau
+     * @param liste la liste de mouvement
+     */
     public void ajouterOrdres(ArrayList<TypeMouvement> liste) {
         this.ordres.addAll(liste);
     }
 
+    /**
+     * Exécute les ordres du vaisseau
+     */
     public void faireOrdre() {
         if (this.peutFaireOrdre()) {
             position = position.voisin(getOrdre());
@@ -72,6 +92,10 @@ public class Vaisseau {
         PA--;
     }
 
+    /**
+     * Renvoie si la carte à besoin d'une mise à jour
+     * @return vrai si la carte à besoin d'une mise à jour
+     */
     public boolean besoinMiseAJourCarte() {
         boolean res = false;
         for (Case voisin : carte.getCase(this.position).getVoisins()) {
@@ -83,13 +107,20 @@ public class Vaisseau {
         return res;
     }
 
+    /**
+     * vide la liste d'ordres
+     */
     public void viderOrdres() {
         this.ordres.clear();
     }
 
+    /**
+     * Renvoie si l'ordre est possible
+     * @return vrai si l'ordre est possible
+     */
     public boolean peutFaireOrdre() {
         boolean res = false;
-        if (!ordres.isEmpty() && moduleMemoire.positionLibre(destination))
+        if (getOrdre() != null && moduleMemoire.positionLibre(destination))
             res = true;
         return res;
     }

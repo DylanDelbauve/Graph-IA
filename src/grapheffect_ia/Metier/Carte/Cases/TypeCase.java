@@ -1,5 +1,9 @@
 package grapheffect_ia.Metier.Carte.Cases;
 
+/**
+ * type de case
+ * @author delbauve
+ */
 public enum TypeCase {
     ASTEROIDES ("Asteroides"),
     ESPACE ("Espace"),

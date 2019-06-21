@@ -80,11 +80,9 @@ public class Module_Memoire extends Module  {
 
     public boolean positionLibre(Coordonnee c) {
         boolean res = true;
-        for (int i = 0; i < vaisseaux.size(); i++) {
-            if (vaisseaux.get(i).getPosition() == c) {
+        for (Vaisseau v: vaisseaux) {
+            if (!(v.getPosition() == c))
                 res = false;
-                i = vaisseaux.size();
-            }
         }
         return res;
     }

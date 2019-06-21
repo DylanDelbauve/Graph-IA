@@ -6,10 +6,18 @@ import grapheffect_ia.Metier.Carte.Cases.FabriqueCase;
 import java.util.Collection;
 import java.util.HashMap;
 
+/**
+ *
+ * @author delbauve
+ */
 public class Carte {
 
-    private HashMap<Coordonnee,Case> cases;
+    private HashMap<Coordonnee,Case> cases; //liste des cases par rapport à leurs coordonnées
 
+    /**
+     * Créer une carte en fonction du message
+     * @param messageRecu le message reçu par L'IA
+     */
     public Carte(String messageRecu) {
         this.cases = new HashMap<>() ;
         for(int i=0 ;i<41 ;i++) {
@@ -32,6 +40,11 @@ public class Carte {
         }
     }
 
+    /**
+     * Ajoute une case à la carte
+     * @param coordonnee les coordonnées de la case
+     * @param lettre le type de la case
+     */
     private void ajouterCase(Coordonnee coordonnee, Character lettre) {
         Case c = FabriqueCase.Creer(coordonnee,lettre);
         cases.put(c.getCoordonnee(),c);
@@ -52,10 +65,19 @@ public class Carte {
         }
     }
 
+    /**
+     * Renvoie la case en fonction des coordonnées
+     * @param coordonnee coordonnée de la case
+     * @return la case
+     */
     public Case getCase(Coordonnee coordonnee) {
         return cases.get(coordonnee);
     }
 
+    /**
+     * Renvoie une liste de toutes les cases
+     * @return une liste de cases
+     */
     public Collection<Case> getCases() {
         return cases.values();
     }

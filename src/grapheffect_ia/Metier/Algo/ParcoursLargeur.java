@@ -9,16 +9,28 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
+/**
+ *
+ * @author delbauve
+ */
 public class ParcoursLargeur {
 
-    private HashMap<Case,Integer> distances;
-    private Carte carte;
+    private HashMap<Case,Integer> distances; //Liste de la distance des cases
+    private Carte carte; //Carte du jeu
 
+    /**
+     * Créer un parcours des cases de la map
+     * @param carte carte du jeu
+     */
     public ParcoursLargeur(Carte carte) {
         this.carte = carte;
         this.distances = new HashMap<>();
     }
 
+    /**
+     * Calcule la distance des cases par rapport à une case de départ
+     * @param depart Case de départ
+     */
     public void calculer(Case depart) {
         ArrayList<Case> aTraiter = new ArrayList<>();
         this.distances.clear();
@@ -43,6 +55,11 @@ public class ParcoursLargeur {
         }
     }
 
+    /**
+     * Récupère la distance de la Case dans distances
+     * @param c la case à tester
+     * @return la distance
+     */
     public int getDistance(Case c) {
         return distances.get(c);
     }
@@ -56,6 +73,11 @@ public class ParcoursLargeur {
         return res;
     }
 
+    /**
+     * Renvoi le chemin jusqu'à la case arrivée
+     * @param arrivee la Case d'arrivée
+     * @return une liste des mouvements
+     */
     public ArrayList<TypeMouvement> getChemin(Case arrivee) {
         ArrayList<TypeMouvement> resultat = new ArrayList<>();
         Case caseEnCours = arrivee;
@@ -75,6 +97,11 @@ public class ParcoursLargeur {
         return resultat;
     }
 
+    /**
+     * Teste si la case est atteignable par rapport à la case de départ
+     * @param c la case à tester
+     * @return vrai ou faux si la case est atteignable
+     */
     public boolean estAtteignable(Case c) {
         boolean res = false;
         if (getDistance(c) != -1)

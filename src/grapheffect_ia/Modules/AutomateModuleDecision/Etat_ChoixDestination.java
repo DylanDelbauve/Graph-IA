@@ -8,6 +8,10 @@ import grapheffect_ia.Metier.Carte.Coordonnee;
 import grapheffect_ia.Metier.Vaisseaux.Vaisseau;
 import grapheffect_ia.Modules.Module_Decision;
 
+/**
+ * Etat où l'IA doit faire un choix sur la destination des vaisseaux
+ * @author delbauve
+ */
 public class Etat_ChoixDestination extends  Etat {
     private Vaisseau vaisseau;
 

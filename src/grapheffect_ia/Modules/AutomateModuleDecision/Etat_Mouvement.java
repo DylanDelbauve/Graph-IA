@@ -3,6 +3,10 @@ package grapheffect_ia.Modules.AutomateModuleDecision;
 import grapheffect_ia.Metier.Vaisseaux.Vaisseau;
 import grapheffect_ia.Modules.Module_Decision;
 
+/**
+ * Etat où l'IA doit effectuer les mouvements des vaisseaux
+ * @author delbauve
+ */
 public class Etat_Mouvement extends Etat {
     private Vaisseau vaisseau;
 

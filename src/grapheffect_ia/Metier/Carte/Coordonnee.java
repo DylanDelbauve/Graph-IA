@@ -2,19 +2,35 @@ package grapheffect_ia.Metier.Carte;
 
 import java.util.Objects;
 
+/**
+ * @author delbauve
+ */
 public class Coordonnee {
-    private int ligne;
-    private int colonne;
+    private int ligne; //la ligne
+    private int colonne; //la colonne
 
+    /**
+     * Créer une coordonnée en fonction de la ligne et de la colonne
+     * @param ligne la ligne
+     * @param colonne la colonne
+     */
     public Coordonnee(int ligne, int colonne) {
         this.ligne = ligne;
         this.colonne = colonne;
     }
 
+    /**
+     * Renvoie la ligne
+     * @return la ligne
+     */
     public int getLigne() {
         return ligne;
     }
 
+    /**
+     * Renvoie la colonne
+     * @return la colonne
+     */
     public int getColonne() {
         return colonne;
     }
@@ -33,6 +49,11 @@ public class Coordonnee {
         return Objects.hash(ligne, colonne);
     }
 
+    /**
+     * Donne les coordonnées en fonction du type de mouvement
+     * @param mouvement le type de mouvement
+     * @return les coordonnées
+     */
     public Coordonnee voisin(TypeMouvement mouvement) {
         Coordonnee c = null;
         if (this.colonne % 2 != 0) {
